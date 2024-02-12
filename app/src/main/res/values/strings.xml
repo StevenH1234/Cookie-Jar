@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">cookie_jar</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <!-- Bottom Nav bar -->
+    <string name="bottom_menu_home">home</string>
+    <string name="bottom_menu_list">list</string>
+    <string name="bottom_menu_settings">settings</string>
+    <string name="bottom_menu_mystery_box">mystery box</string>
+</resources>
