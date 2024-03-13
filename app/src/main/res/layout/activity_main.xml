@@ -12,9 +12,9 @@
         android:id="@+id/toolbar"
         style="@style/Widget.Material3.Toolbar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="40sp"
         android:layout_weight="0"
-        android:background="@null" />
+        android:background="@color/pink" />
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/nav_host_fragment"
@@ -30,6 +30,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="0"
+        android:background="@drawable/bottom_nav_rounded_corners"
         app:menu="@menu/menu_bottom" />
+
 
 </LinearLayout>

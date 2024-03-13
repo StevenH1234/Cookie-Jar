@@ -8,4 +8,40 @@
     <string name="bottom_menu_list">list</string>
     <string name="bottom_menu_settings">settings</string>
     <string name="bottom_menu_mystery_box">mystery box</string>
+
+    <!-- Settings fragment -->
+    <string name="settings_tag">Settings</string>
+    <string name="settings_theme">Theme</string>
+    <string name="classic">classic</string>
+    <string name="notebook">notebook</string>
+    <string name="marble">marble</string>
+
+    <!-- Recycler PLACEHOLDER card tags -->
+    <string name="cake">Cake</string>
+    <string name="time">50 minutes</string>
+    <string name="description">baked chiffon sheet</string>
+
+    <!-- Recycler view fragments -->
+    <string-array name="Recipe_name">
+        <item>Cake</item>
+    </string-array>
+
+    <string-array name="Recipe_time_mins">
+        <item>50</item>
+    </string-array>
+
+    <string-array name="recipe_description">
+        <item>baked chiffon sheet</item>
+    </string-array>
+
+    <!-- Top-Menu bar -->
+    <string name="add_item">+</string>
+
+    <!-- popup text -->
+    <string name="add_recipe_name">Recipe Name</string>
+    <string name="add_recipe_prep_time">Prep Time</string>
+    <string name="add_recipe_cook_time">Cook Time</string>
+    <string name="add_total_cook_time">Total Time</string>
+    <string name="add_description">Description</string>
+    <string name="next_popup">Next</string>
 </resources>
