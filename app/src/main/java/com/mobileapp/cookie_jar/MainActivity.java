@@ -16,6 +16,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Toolbar;
 
 import com.google.android.material.appbar.MaterialToolbar;
@@ -24,6 +25,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 public class MainActivity extends AppCompatActivity {
 
     Button add_button;
+    EditText recipe_edit, description_edit, prep_time_edit, cook_time_edit, total_time_edit;
     Dialog mDialog;
     @Override
     protected void onCreate(Bundle savedInstanceState) {

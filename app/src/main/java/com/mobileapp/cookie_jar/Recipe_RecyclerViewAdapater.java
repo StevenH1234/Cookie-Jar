@@ -1,6 +1,7 @@
 package com.mobileapp.cookie_jar;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,13 +12,16 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Recipe_RecyclerViewAdapater extends RecyclerView.Adapter<Recipe_RecyclerViewAdapater.MyViewHolder> {
     Context context;
-    ArrayList<recipeModel> recipeModels;
-    public Recipe_RecyclerViewAdapater(Context context, ArrayList<recipeModel> recipeModels){
+    List<Recipe> recipes;
+
+    // constructor
+    public Recipe_RecyclerViewAdapater(Context context){
         this.context = context;
-        this.recipeModels = recipeModels;
+        this.recipes = new ArrayList<>();
     }
     @NonNull
     @Override
@@ -29,15 +33,28 @@ public class Recipe_RecyclerViewAdapater extends RecyclerView.Adapter<Recipe_Rec
 
     @Override
     public void onBindViewHolder(@NonNull Recipe_RecyclerViewAdapater.MyViewHolder holder, int position) {
-        holder.recipe.setText(recipeModels.get(position).getRecipeName());
-        holder.time.setText(recipeModels.get(position).getRecipeCookTime());
-        holder.description.setText((recipeModels.get(position).getRecipeDescription()));
-        holder.imageView.setImageResource(recipeModels.get(position).getRecipeImage());
+        if (recipes != null) {
+            Recipe current = recipes.get(position);
+            holder.recipe.setText(current.getRecipeName());
+            holder.time.setText(String.valueOf(current.getCookTime()));
+            holder.description.setText(current.getDescription());
+        } else {
+            holder.recipe.setText("No Recipes");
+        }
+    }
+
+    void setRecipe(List<Recipe> data){
+        recipes = data;
+        notifyDataSetChanged();
     }
 
     @Override
     public int getItemCount() {
-        return recipeModels.size();
+        if (recipes != null){
+            return recipes.size();
+        } else {
+            return 0;
+        }
     }
 
     public static class MyViewHolder extends RecyclerView.ViewHolder{

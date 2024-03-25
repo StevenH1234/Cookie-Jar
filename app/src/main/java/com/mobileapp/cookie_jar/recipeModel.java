@@ -1,32 +1,29 @@
 package com.mobileapp.cookie_jar;
 
-public class recipeModel {
-    String recipeName;
-    String recipeCookTime;
-    String recipeDescription;
-    int recipeImage;
+import android.app.Application;
 
-    public recipeModel(String recipeName, String recipeCookTime,
-                       String recipeDescription, int recipeImage) {
-        this.recipeName = recipeName;
-        this.recipeCookTime = recipeCookTime;
-        this.recipeDescription = recipeDescription;
-        this.recipeImage = recipeImage;
+import androidx.annotation.NonNull;
+//import androidx.compose.runtime.external.kotlinx.collections.immutable.implementations.persistentOrderedMap.LinkedValue;
+import androidx.lifecycle.AndroidViewModel;
+import androidx.lifecycle.LiveData;
+
+import java.util.List;
+
+public class recipeModel extends AndroidViewModel{
+
+    RecipeDAO recipeDAO;
+    RecipeDatabase recipeDB;
+    LiveData<List<Recipe>> allRecipes;
+
+    public recipeModel(Application application) {
+        super(application);
+
+        recipeDB = RecipeDatabase.getInstance(application);
+        recipeDAO = recipeDB.getRecipeDAO();
+        allRecipes = recipeDAO.getAllRecipes();
     }
 
-    public String getRecipeName() {
-        return recipeName;
-    }
-
-    public String getRecipeCookTime() {
-        return recipeCookTime;
-    }
-
-    public String getRecipeDescription() {
-        return recipeDescription;
-    }
-
-    public int getRecipeImage() {
-        return recipeImage;
+    LiveData<List<Recipe>> getAllRecipes() {
+        return allRecipes;
     }
 }

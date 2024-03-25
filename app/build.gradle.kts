@@ -46,6 +46,11 @@ dependencies {
     implementation("androidx.navigation:navigation-compose:$nav_version")
     androidTestImplementation("androidx.navigation:navigation-testing:$nav_version")
 
+    //room database dependencies
+    val room_version = "2.4.0"
+    implementation("androidx.room:room-runtime:$room_version")
+    annotationProcessor("androidx.room:room-compiler:$room_version")
+
     implementation("androidx.lifecycle:lifecycle-livedata:2.6.2")
     implementation("androidx.lifecycle:lifecycle-viewmodel:2.6.2")
     implementation("androidx.appcompat:appcompat:1.6.1")

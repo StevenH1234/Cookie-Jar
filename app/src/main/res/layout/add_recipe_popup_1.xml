@@ -19,7 +19,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/editTextNumber"
+        android:id="@+id/prep_time_edit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="52dp"
@@ -28,10 +28,10 @@
         android:inputType="number"
         android:textSize="12dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextText" />
+        app:layout_constraintTop_toBottomOf="@+id/recipe_edit" />
 
     <EditText
-        android:id="@+id/editTextNumber3"
+        android:id="@+id/total_time_edit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
@@ -40,7 +40,7 @@
         android:inputType="number"
         android:textSize="12dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextNumber2" />
+        app:layout_constraintTop_toBottomOf="@+id/cook_time_edit" />
 
     <TextView
         android:id="@+id/add_recipe_total_cook_time"
@@ -49,7 +49,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="32dp"
         android:text="@string/add_total_cook_time"
-        app:layout_constraintEnd_toStartOf="@+id/editTextNumber3"
+        app:layout_constraintEnd_toStartOf="@+id/total_time_edit"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/add_recipe_cook_time" />
@@ -61,7 +61,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="28dp"
         android:text="@string/add_recipe_cook_time"
-        app:layout_constraintEnd_toStartOf="@+id/editTextNumber2"
+        app:layout_constraintEnd_toStartOf="@+id/cook_time_edit"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/add_recipe_prep_time" />
@@ -72,13 +72,13 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="60dp"
         android:text="@string/add_recipe_prep_time"
-        app:layout_constraintEnd_toStartOf="@+id/editTextNumber"
+        app:layout_constraintEnd_toStartOf="@+id/prep_time_edit"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextText" />
+        app:layout_constraintTop_toBottomOf="@+id/recipe_edit" />
 
     <EditText
-        android:id="@+id/editTextNumber2"
+        android:id="@+id/cook_time_edit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
@@ -87,10 +87,10 @@
         android:inputType="number"
         android:textSize="12dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextNumber" />
+        app:layout_constraintTop_toBottomOf="@+id/prep_time_edit" />
 
     <EditText
-        android:id="@+id/editTextText"
+        android:id="@+id/recipe_edit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
@@ -102,7 +102,7 @@
         app:layout_constraintTop_toBottomOf="@+id/add_recipe_name" />
 
     <EditText
-        android:id="@+id/editTextText2"
+        android:id="@+id/description_edit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -123,13 +123,15 @@
         app:layout_constraintTop_toBottomOf="@+id/add_recipe_total_cook_time" />
 
     <Button
-        android:id="@+id/next_button"
+        android:id="@+id/save"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="16dp"
         android:text="@string/next_popup"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/description_edit"
+        app:layout_constraintVertical_bias="1.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
