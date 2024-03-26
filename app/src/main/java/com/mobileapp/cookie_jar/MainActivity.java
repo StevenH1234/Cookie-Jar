@@ -1,7 +1,27 @@
 package com.mobileapp.cookie_jar;
 
-// TODO: add the view model and model
+/*
+Mobile App Development II -- COMP.4631 Honor Statement
+The practice of good ethical behavior is essential for maintaining good order in the classroom, providing an enriching
+learning experience for students, and training as a practicing computing professional upon graduation. This practice
+is manifested in the University's Academic Integrity policy. Students are expected to strictly avoid academic dishonesty
+and adhere to the Academic Integrity policy as outlined in the course catalog. Violations will be dealt with as outlined
+therein. All programming assignments in this class are to be done by the student alone unless otherwise specified. No
+outside help is permitted except the instructor and approved tutors.
 
+I certify that the work submitted with this assignment is mine and was generated in a manner consistent with this document,
+the course academic policy on the course website on Blackboard, and the UMass Lowell academic code.
+
+Coding Resources Utilized:
+- RoomDatabase Android Studio - https://developer.android.com/reference/android/arch/persistence/room/RoomDatabase
+- General Questions StackOverflow - https://stackoverflow.com/
+- How to Update RecyclerView Adapter Data in Android? - https://www.geeksforgeeks.org/how-to-update-recyclerview-adapter-data-in-android/
+- SearchView with RecyclerView - Android Studio Tutorial (2022) - codingSTUFF - https://www.youtube.com/watch?v=tQ7V7iBg5zE&t=303s
+- Android Room Database Tutorial: Fetch & Display Data from ROOM in RecyclerView #4.5 - Smartherd - https://www.youtube.com/watch?v=VrP_GrgWzyo
+
+Date: 03/26/24
+Name: Steven Huynh
+*/
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.navigation.NavController;

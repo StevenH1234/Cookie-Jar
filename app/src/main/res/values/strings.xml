@@ -36,6 +36,7 @@
 
     <!-- Top-Menu bar -->
     <string name="add_item">+</string>
+    <string name="add_word">add</string>
 
     <!-- popup text -->
     <string name="add_recipe_name">Recipe Name</string>

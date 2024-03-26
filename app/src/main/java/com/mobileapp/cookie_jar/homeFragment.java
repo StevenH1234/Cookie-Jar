@@ -25,6 +25,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import androidx.appcompat.widget.SearchView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -32,10 +33,11 @@ import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-public class homeFragment extends Fragment {
+public class homeFragment extends Fragment implements Recipe_RecyclerViewAdapater.OnItemClickListener {
     ArrayList<recipeModel> homeRecipeModels = new ArrayList<recipeModel>();
     Recipe_RecyclerViewAdapater adapter;
     ImageButton add_button;
+    SearchView recipeSearchView;
     Dialog mDialog;
 
     RecipeDatabase recipeDB;
@@ -44,11 +46,13 @@ public class homeFragment extends Fragment {
 
     EditText recipe_edit, description_edit, prep_time_edit, cook_time_edit, total_time_edit;
     Button next_button;
+    ImageButton delete_recipe;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
         add_button = view.findViewById(R.id.add_button);
+        recipeSearchView = view.findViewById(R.id.recipeSearchView);
 
         // pop out one: making recipe
         View popUpOne = inflater.inflate(R.layout.add_recipe_popup_1, null);
@@ -58,8 +62,11 @@ public class homeFragment extends Fragment {
         cook_time_edit = popUpOne.findViewById(R.id.cook_time_edit);
         total_time_edit = popUpOne.findViewById(R.id.total_time_edit);
         next_button = popUpOne.findViewById(R.id.save);
-
         mDialog = new Dialog(requireContext());
+
+        //delete recipe
+        View recipeCardView = inflater.inflate(R.layout.overview_recycler_view_row, null);
+        delete_recipe = recipeCardView.findViewById(R.id.delete_recipe);
 
          //create recipe DB
         RoomDatabase.Callback myCallBack = new RoomDatabase.Callback() {
@@ -76,20 +83,29 @@ public class homeFragment extends Fragment {
         recipeDB = Room.databaseBuilder(requireContext(), RecipeDatabase.class, "recipeDB").addCallback(myCallBack).build();
 
         // set up recyclerview
+        recipeViewModel = new ViewModelProvider(this).get(recipeModel.class);
         RecyclerView recyclerView = view.findViewById(R.id.homeRecyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setHasFixedSize(true);
-        adapter = new Recipe_RecyclerViewAdapater(getContext());
+        adapter = new Recipe_RecyclerViewAdapater(getContext(), recipeViewModel);
+        adapter.setOnItemClickListener(this);
         recyclerView.setAdapter(adapter);
 
         // set up viewModel
-        recipeViewModel = new ViewModelProvider(this).get(recipeModel.class);
+
         recipeViewModel.getAllRecipes().observe(getViewLifecycleOwner(), new Observer<List<Recipe>>() {
             @Override
             public void onChanged(List<Recipe> recipes) {
                 if (recipes != null) {
                     adapter.setRecipe(recipes);
                 }
+            }
+        });
+
+        delete_recipe.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
             }
         });
 
@@ -122,6 +138,40 @@ public class homeFragment extends Fragment {
                 mDialog.dismiss();
             }
         });
+
+        // search view implementation
+        recipeSearchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                if(newText.isEmpty()){
+                    adapter.setRecipe(adapter.getOGrecipes());
+                } else {
+                    filterList(newText);
+                }
+                return true;
+            }
+
+            private void filterList(String newText) {
+                List<Recipe> filteredList = new ArrayList<>();
+                for(Recipe recipe: adapter.recipes){
+                    if (recipe.getRecipeName().toLowerCase().contains(newText.toLowerCase())){
+                        filteredList.add(recipe);
+                    }
+                }
+
+                if (filteredList.isEmpty()){
+                    Log.d("Failed", "No Data Found");
+                } else {
+                    adapter.setFilteredRecipes(filteredList);
+                }
+            }
+        });
+
         return view;
     }
 
@@ -141,6 +191,31 @@ public class homeFragment extends Fragment {
                         updatedRecipes.add(recipe);
                         adapter.setRecipe(updatedRecipes);
                         Toast.makeText(requireContext(), "added to DB", Toast.LENGTH_SHORT).show();
+                    }
+                });
+            }
+        });
+    }
+
+    @Override
+    public void onItemClick(int position){
+        ExecutorService executorService = Executors.newSingleThreadExecutor();
+        Handler handler = new Handler(Looper.getMainLooper());
+        executorService.execute(new Runnable() {
+            @Override
+            public void run() {
+                //background task
+                recipeDB.getRecipeDAO().deleteRecipe(adapter.recipes.get(position));
+                for(int i = 0; i < adapter.recipes.size(); i++){
+                    Log.d("recipe", adapter.recipes.get(i).recipeName);
+                }
+                requireActivity().runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        List<Recipe> updatedRecipes = new ArrayList<>(adapter.recipes);
+                        updatedRecipes.remove(position);
+                        adapter.setRecipe(updatedRecipes);
+                        Toast.makeText(requireContext(), "removed from DB", Toast.LENGTH_SHORT).show();
                     }
                 });
             }
