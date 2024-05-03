@@ -1,43 +1,75 @@
 package com.mobileapp.cookie_jar;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.content.Context;
+import android.content.pm.PackageManager;
+import android.database.Cursor;
+import android.net.Uri;
+import android.provider.MediaStore;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.URLUtil;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.Manifest;
 
 import androidx.annotation.NonNull;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
+
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
 public class Recipe_RecyclerViewAdapater extends RecyclerView.Adapter<Recipe_RecyclerViewAdapater.MyViewHolder> {
     Context context;
     List<Recipe> recipes;
+    ArrayList<String> URIpaths;
     recipeModel recipeModel;
-    // temp solution: copy of OG list
     List<Recipe> OGrecipes;
+    OnDeleteClickListener deleteListener;
+    OnEditRecipeClickedListener editListener;
+    OnItemClickListener itemListener;
 
     // constructor
     public Recipe_RecyclerViewAdapater(Context context, recipeModel recipeViewModel){
         this.context = context;
         this.recipes = new ArrayList<>();
         this.OGrecipes = new ArrayList<>();
+        this.URIpaths = new ArrayList<>();
         this.recipeModel = recipeViewModel;
     }
 
     public interface OnItemClickListener {
-        void onItemClick(int position);
+        void onItemClick(int position, int recipe_id);
     }
 
-    OnItemClickListener deleteListener;
+    public interface OnDeleteClickListener {
+        void onDeleteClick(int position);
+    }
+
     void setOnItemClickListener(OnItemClickListener listener) {
+        this.itemListener = listener;
+    }
+
+    void setOnDeleteClickListener(OnDeleteClickListener listener) {
         this.deleteListener = listener;
+    }
+
+    void setOnEditRecipeClickListener(OnEditRecipeClickedListener listener) {
+        this.editListener = listener;
+    }
+
+    void setURIpaths(ArrayList<String> data){
+        this.URIpaths = data;
+        notifyDataSetChanged();
     }
 
     @NonNull
@@ -51,26 +83,53 @@ public class Recipe_RecyclerViewAdapater extends RecyclerView.Adapter<Recipe_Rec
     @Override
     public void onBindViewHolder(@NonNull Recipe_RecyclerViewAdapater.MyViewHolder holder, @SuppressLint("RecyclerView") int position) {
         if (recipes != null) {
+            //TODO: currently only puts down the images from the gallery not regardless of choice
+            String imagePath = URIpaths.get(position);
+            for (String paths: URIpaths){
+                Log.d("paths are", paths);
+            }
+
             Recipe current = recipes.get(position);
             holder.recipe.setText(current.getRecipeName());
-            holder.time.setText(String.valueOf(current.getCookTime()));
+            holder.time.setText(String.valueOf(current.getCookTime()) + " Minutes");
             holder.description.setText(current.getDescription());
+            Glide.with(holder.imageView)
+                    .load(imagePath)
+                    .into(holder.imageView);
+
+            holder.editRecipe.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    editListener.onEditRecipeClick(position, current);
+                }
+            });
+
             holder.deleteButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-
-//                    Log.d("clicked", String.valueOf(recipes.get(holder.getAdapterPosition()).getId()));
-//                    int id = recipes.get(holder.getAdapterPosition()).getId();
-//                    recipeModel.deleteRecipe(id);
-//                    notifyDataSetChanged();
                     if (deleteListener != null) {
-                        deleteListener.onItemClick(position);
+                        deleteListener.onDeleteClick(position);
                     }
+                }
+            });
+
+            holder.itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    int position = holder.getAdapterPosition();
+                    recipeModel.refreshRecipes();
+                    Log.d("You clicked", Integer.toString(position));
+                    Log.d("You got", Integer.toString(recipes.get(position).getId()));
+                    itemListener.onItemClick(position, recipes.get(position).getId());
                 }
             });
         } else {
             holder.recipe.setText("No Recipes");
         }
+    }
+
+    public interface OnEditRecipeClickedListener {
+        void onEditRecipeClick(int position, Recipe recipe);
     }
 
     void setFilteredRecipes(List<Recipe> filteredRecipes) {
@@ -79,6 +138,9 @@ public class Recipe_RecyclerViewAdapater extends RecyclerView.Adapter<Recipe_Rec
     }
     void setRecipe(List<Recipe> data){
         recipes = data;
+        for( Recipe recipe: data){
+            Log.d("loop data", recipe.getRecipeName());
+        }
         OGrecipes = data;
         notifyDataSetChanged();
     }
@@ -97,16 +159,16 @@ public class Recipe_RecyclerViewAdapater extends RecyclerView.Adapter<Recipe_Rec
     public static class MyViewHolder extends RecyclerView.ViewHolder{
         ImageView imageView;
         TextView recipe, time, description;
-        ImageButton deleteButton;
+        ImageButton deleteButton, editRecipe;
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            imageView = itemView.findViewById(R.id.food_image);
             recipe = itemView.findViewById(R.id.recipe_name);
             time = itemView.findViewById(R.id.recipe_cook_time);
             description = itemView.findViewById(R.id.recipe_description);
             deleteButton = itemView.findViewById(R.id.delete_recipe);
-
+            editRecipe = itemView.findViewById(R.id.edit_recipe);
+            imageView = itemView.findViewById(R.id.food_image);
         }
     }
 }

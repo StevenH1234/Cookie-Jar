@@ -1,14 +1,18 @@
 package com.mobileapp.cookie_jar;
 
+import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
+import androidx.room.ForeignKey;
 import androidx.room.PrimaryKey;
+
+import java.util.List;
 
 @Entity
 public class Recipe {
     @ColumnInfo(name = "recipe_id")
     @PrimaryKey(autoGenerate = true)
-    public int id;
+    public int recipe_id;
 
     @ColumnInfo(name = "recipe_name")
     public String recipeName;
@@ -20,23 +24,26 @@ public class Recipe {
     public int totalTime;
     @ColumnInfo(name = "description")
     public String description;
+    @ColumnInfo(name = "imageURI")
+    public String imageURI;
 
-    public Recipe(int id, String recipeName, int prepTime,
-                  int cookTime, int totalTime, String description) {
-        this.id = id;
+    public Recipe(int recipe_id, String recipeName, int prepTime,
+                  int cookTime, int totalTime, String description, String imageURI) {
+        this.recipe_id = recipe_id;
         this.recipeName = recipeName;
         this.prepTime = prepTime;
         this.cookTime = cookTime;
         this.totalTime = totalTime;
         this.description = description;
+        this.imageURI = imageURI;
     }
 
     public int getId() {
-        return id;
+        return recipe_id;
     }
 
     public void setId(int id) {
-        this.id = id;
+        this.recipe_id = id;
     }
 
     public String getRecipeName() {
@@ -78,25 +85,47 @@ public class Recipe {
     public void setDescription(String description) {
         this.description = description;
     }
+
+    public String getImageURI(){ return imageURI; }
+
+    public void setImageURI(String imageURI){ this.imageURI = imageURI; }
 }
 
-@Entity
+@Entity(foreignKeys = @ForeignKey(entity = Recipe.class,
+        parentColumns = "recipe_id",
+        childColumns = "recipe_id",
+        onDelete = ForeignKey.CASCADE))
+
 class Ingredient {
+    @ColumnInfo(name = "recipe_id")
+    @NonNull
+    public int recipe_id;
     @ColumnInfo(name = "ingredient_id")
     @PrimaryKey(autoGenerate = true)
     public int ingredient_id;
 
     @ColumnInfo(name = "ingredient_name")
     public String ingredientName;
+    @ColumnInfo(name = "ingredient_quantity")
+    public int ingredientQuantity;
+    @ColumnInfo(name = "ingredient_measure")
+    public String ingredientMeasure;
 
-    public Ingredient(int ingredient_id, String ingredientName) {
+    public Ingredient(int recipe_id, int ingredient_id, String ingredientName, int ingredientQuantity, String ingredientMeasure) {
+        this.recipe_id = recipe_id;
         this.ingredient_id = ingredient_id;
         this.ingredientName = ingredientName;
+        this.ingredientQuantity = ingredientQuantity;
+        this.ingredientMeasure = ingredientMeasure;
     }
 
     public int getIngredient_id() {
         return ingredient_id;
     }
+
+    public int getRecipe_id(){ return recipe_id; }
+
+    public void setRecipe_id(int recipe_id){ this.recipe_id = recipe_id; }
 
     public void setIngredient_id(int ingredient_id) {
         this.ingredient_id = ingredient_id;
@@ -109,33 +138,49 @@ class Ingredient {
     public void setIngredientName(String ingredientName) {
         this.ingredientName = ingredientName;
     }
+
+    public int getIngredientQuantity() {
+        return ingredientQuantity;
+    }
+
+    public void setIngredientQuantity(int ingredientQuantity) { this.ingredientQuantity = ingredientQuantity; }
+
+    public String getIngredientMeasure() {
+        return ingredientMeasure;
+    }
+
+    public void setIngredientMeasure(String ingredientMeasure) { this.ingredientMeasure = ingredientMeasure; }
 }
 
 
-@Entity
+@Entity(foreignKeys = @ForeignKey(entity = Recipe.class,
+        parentColumns = "recipe_id",
+        childColumns = "recipe_id",
+        onDelete = ForeignKey.CASCADE))
+
 class Steps {
     @ColumnInfo(name = "recipe_id")
-    @PrimaryKey(autoGenerate = false)
-    public int recipeId;
-
+    @NonNull
+    public int recipe_id;
+    @PrimaryKey(autoGenerate = true)
+    public int step_id;
     @ColumnInfo(name = "step_no")
     public int stepNo;
     @ColumnInfo(name = "step_description")
     public String stepDescription;
 
-    public Steps(int recipeId, int stepNo, String stepDescription) {
-        this.recipeId = recipeId;
+    public Steps(int recipe_id, int step_id, int stepNo, String stepDescription) {
+        this.recipe_id = recipe_id;
+        this.step_id = step_id;
         this.stepNo = stepNo;
         this.stepDescription = stepDescription;
     }
 
     public int getRecipeId() {
-        return recipeId;
+        return recipe_id;
     }
 
-    public void setRecipeId(int recipeId) {
-        this.recipeId = recipeId;
-    }
+    public void setRecipe_id(int recipe_id){ this.recipe_id = recipe_id; }
 
     public int getStepNo() {
         return stepNo;

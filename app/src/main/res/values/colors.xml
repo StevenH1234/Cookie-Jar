@@ -1,8 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="black">#FF000000</color>
-    <color name="white">#FFFFFFFF</color>
     <color name="Lavandar">#6750A3</color>
     <color name="pink">#C27676</color>
     <color name="cream">#FFE0B2</color>
+    <color name="red">#CD4B4B</color>
+    <color name="DarkRed">#9A2D2D</color>
+
+    <color name="white">#FFFFFFFF</color>
+    <color name="light_grey">#D6D6D6</color>
+    <color name="med_grey">#616161</color>
+    <color name="dark_grey">#222222</color>
 </resources>

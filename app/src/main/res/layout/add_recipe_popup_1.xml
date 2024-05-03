@@ -12,6 +12,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
+        android:textColor="?attr/colorTertiary"
         android:text="@string/add_recipe_name"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.073"
@@ -22,12 +23,24 @@
         android:id="@+id/prep_time_edit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="52dp"
+        android:layout_marginTop="20dp"
         android:layout_marginEnd="68dp"
         android:ems="10"
         android:inputType="number"
         android:textSize="12dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/recipe_edit" />
+
+    <TextView
+        android:id="@+id/add_recipe_prep_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="28dp"
+        android:textColor="?attr/colorTertiary"
+        android:text="@string/add_recipe_prep_time"
+        app:layout_constraintEnd_toStartOf="@+id/prep_time_edit"
+        app:layout_constraintHorizontal_bias="0.913"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/recipe_edit" />
 
     <EditText
@@ -48,6 +61,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="32dp"
+        android:textColor="?attr/colorTertiary"
         android:text="@string/add_total_cook_time"
         app:layout_constraintEnd_toStartOf="@+id/total_time_edit"
         app:layout_constraintHorizontal_bias="1.0"
@@ -60,22 +74,12 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="28dp"
+        android:textColor="?attr/colorTertiary"
         android:text="@string/add_recipe_cook_time"
         app:layout_constraintEnd_toStartOf="@+id/cook_time_edit"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/add_recipe_prep_time" />
-
-    <TextView
-        android:id="@+id/add_recipe_prep_time"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="60dp"
-        android:text="@string/add_recipe_prep_time"
-        app:layout_constraintEnd_toStartOf="@+id/prep_time_edit"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/recipe_edit" />
 
     <EditText
         android:id="@+id/cook_time_edit"
@@ -95,7 +99,6 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="text"
-        android:text="Name"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.177"
         app:layout_constraintStart_toStartOf="parent"
@@ -108,7 +111,6 @@
         android:layout_marginStart="16dp"
         android:ems="10"
         android:inputType="text"
-        android:text="Name"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/add_recipe_description" />
 
@@ -117,7 +119,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="72dp"
+        android:layout_marginTop="32dp"
+        android:textColor="?attr/colorTertiary"
         android:text="@string/add_description"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/add_recipe_total_cook_time" />
@@ -133,5 +136,29 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/description_edit"
         app:layout_constraintVertical_bias="1.0" />
+
+    <ImageView
+        android:id="@+id/edit_image"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:background="@color/light_grey"
+        app:layout_constraintBottom_toTopOf="@+id/save"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.072"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/description_edit"
+        app:layout_constraintVertical_bias="0.112"
+        app:srcCompat="@drawable/photo_icon" />
+
+    <ImageButton
+        android:id="@+id/edit_image_add"
+        android:layout_width="37dp"
+        android:layout_height="35dp"
+        android:background="@drawable/round_add_button"
+        app:layout_constraintBottom_toBottomOf="@+id/edit_image"
+        app:layout_constraintEnd_toEndOf="@+id/edit_image"
+        app:layout_constraintStart_toEndOf="@+id/edit_image"
+        app:layout_constraintTop_toBottomOf="@+id/edit_image"
+        app:srcCompat="@drawable/add_button" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

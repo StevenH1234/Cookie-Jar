@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@drawable/basic_background"
+    android:background="?attr/colorOnBackground"
     tools:context=".MainActivity">
 
     <com.google.android.material.appbar.MaterialToolbar
@@ -14,7 +14,7 @@
         android:layout_width="match_parent"
         android:layout_height="40sp"
         android:layout_weight="0"
-        android:background="@color/pink" />
+        android:background="?attr/colorSurface" />
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/nav_host_fragment"
@@ -24,6 +24,17 @@
         android:layout_weight="1"
         app:defaultNavHost="true"
         app:navGraph="@navigation/nav_graph" />
+
+    <ImageButton
+        android:id="@+id/cook_with_me_button"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginEnd="4dp"
+        android:layout_marginBottom="-30dp"
+        android:layout_gravity="center"
+        android:elevation="4dp"
+        android:background="@drawable/round_add_button"
+        android:src="@drawable/cook_with_me_icon" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_nav"

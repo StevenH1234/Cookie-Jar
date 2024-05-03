@@ -19,14 +19,14 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/cream">
+            android:background="?attr/colorAccent">
 
             <ImageView
                 android:id="@+id/food_image"
-                android:layout_width="160dp"
-                android:layout_height="wrap_content"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
                 android:adjustViewBounds="true"
-                android:scaleType="fitCenter"
+                android:scaleType="fitXY"
                 android:src="@drawable/cake_placeholder"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -34,8 +34,8 @@
 
             <TextView
                 android:id="@+id/recipe_description"
-                android:layout_width="204dp"
-                android:layout_height="53dp"
+                android:layout_width="175dp"
+                android:layout_height="51dp"
                 android:layout_marginStart="4dp"
                 android:text="@string/description"
                 android:textSize="14dp"
@@ -50,7 +50,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="16dp"
                 android:text="@string/time"
-                android:textColor="@color/pink"
+                android:textColor="?attr/colorTertiary"
                 android:textSize="24dp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -62,13 +62,27 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="4dp"
                 android:text="@string/cake"
-                android:textColor="@color/pink"
+                android:textColor="?attr/colorTertiary"
                 android:textSize="24dp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/food_image"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.0" />
+
+            <ImageButton
+                android:id="@+id/edit_recipe"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:background="@null"
+                android:clickable="true"
+                android:focusable="true"
+                android:src="@drawable/edit_icon"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/delete_recipe"
+                app:layout_constraintStart_toEndOf="@+id/recipe_description"
+                app:layout_constraintTop_toBottomOf="@+id/recipe_cook_time"
+                app:layout_constraintVertical_bias="0.65" />
 
             <ImageButton
                 android:id="@+id/delete_recipe"
@@ -78,10 +92,10 @@
                 android:src="@drawable/delete_icon"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.25"
+                app:layout_constraintHorizontal_bias="0.709"
                 app:layout_constraintStart_toEndOf="@+id/recipe_description"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.741" />
+                app:layout_constraintVertical_bias="0.865" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

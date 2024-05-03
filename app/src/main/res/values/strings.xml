@@ -37,6 +37,7 @@
     <!-- Top-Menu bar -->
     <string name="add_item">+</string>
     <string name="add_word">add</string>
+    <string name="clear_word">clear</string>
 
     <!-- popup text -->
     <string name="add_recipe_name">Recipe Name</string>
@@ -45,4 +46,63 @@
     <string name="add_total_cook_time">Total Time</string>
     <string name="add_description">Description</string>
     <string name="next_popup">Next</string>
+
+    <!-- popup2 text -->
+    <string name="ingredient_label">Ingredient</string>
+    <string name="quantity_label">Quantity</string>
+    <string name="measurement_label">Measure</string>
+    <string-array name="measurements">
+        <item></item>
+        <item>cups</item>
+        <item>ounces</item>
+        <item>grams</item>
+        <item>tsp</item>
+        <item>tbsp</item>
+        <item>count</item>
+    </string-array>
+
+    <!-- popup3 text -->
+    <string name="steps_label">step No.</string>
+    <string name="step_no"></string>
+
+    <!-- settings -->
+    <string name="light">Light</string>
+    <string name="dark">Dark</string>
+
+    <!-- popup overview -->
+    <string name="overview_name">recipe name</string>
+    <string name="overview_cook_time">cook time</string>
+    <string name="overview_prep_time">prep time</string>
+    <string name="overview_total_time">total time</string>
+    <string name="overview_description_tag">Description</string>
+    <string name="overview_description">temp description</string>
+    <string name="overview_ingredients_label">ingredients</string>
+    <string name="overview_steps_label">steps</string>
+
+    <!-- HELP Fragment -->
+    <string name="help_label">Help</string>
+    <string name="home_help">
+        On the home page, you will find a list of all your saved Recipes. each card holds brief
+        information about the given recipe, if the user desires to see the recipe in detail simply
+        click anywhere on the card view to see the full Recipe details.\
+        \To Add a new recipe, click the floating action button on the bottom right corner of the screen,
+        this will open a sequence of three dialog boxes that allow the user to enter, brief details,
+        ingredients, and steps associated with the Recipe.\
+        \To Find recipes, input the desired recipe name into the searchview box and click enter.
+    </string>
+
+    <string name="shopping_help">
+        To add all the ingredients of a desired recipe, input the exact name of the desired recipe into the
+        add ingredient bar, and hit "add". This will directly add all ingredients.
+    </string>
+
+    <string name="mystery_box_help">
+        input the amount of the ingredients desired to be generated, at least one at most ten. Then click
+        the Mystery button, and watch as the amount of ingredients is generated.
+    </string>
+
+    <string name="cook_with_me_help">
+        Search for an existing recipe in the database, once found, all steps will be loaded and ready to follow.
+        Once loaded, click the next and previous button to flip through steps, until the recipe is complete.
+    </string>
 </resources>

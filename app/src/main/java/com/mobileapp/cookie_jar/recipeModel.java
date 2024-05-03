@@ -3,6 +3,7 @@ package com.mobileapp.cookie_jar;
 import android.app.Application;
 import android.os.Handler;
 import android.os.Looper;
+import android.util.Log;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -20,6 +21,7 @@ public class recipeModel extends AndroidViewModel{
     RecipeDAO recipeDAO;
     RecipeDatabase recipeDB;
     LiveData<List<Recipe>> allRecipes;
+    LiveData<List<String>> allURIs;
 
     public recipeModel(Application application) {
         super(application);
@@ -27,6 +29,7 @@ public class recipeModel extends AndroidViewModel{
         recipeDB = RecipeDatabase.getInstance(application);
         recipeDAO = recipeDB.getRecipeDAO();
         allRecipes = recipeDAO.getAllRecipes();
+        allURIs = recipeDAO.getAllURIs();
     }
 
     LiveData<List<Recipe>> getAllRecipes() {
@@ -34,6 +37,19 @@ public class recipeModel extends AndroidViewModel{
     }
 
     void deleteRecipe(int id) {
-        recipeDAO.deleteRecipe(recipeDAO.getRecipe(id));
+        ExecutorService executorService = Executors.newSingleThreadExecutor();
+        Handler handler = new Handler(Looper.getMainLooper());
+        executorService.execute(new Runnable() {
+            @Override
+            public void run() {
+                //background task
+                recipeDAO.deleteRecipe(recipeDAO.getRecipe(id));
+            }
+        });
+    }
+
+    void refreshRecipes() {
+        Log.d("refreshRecipes", "refreshed");
+        allRecipes = recipeDAO.getAllRecipes();
     }
 }

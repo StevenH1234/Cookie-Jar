@@ -1,9 +1,42 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Base.Theme.Cookie_jar" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Customize your light theme here. -->
-        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+    <style name="WhiteDefault" parent="Base.AppTheme.WhiteDefault"/>
+    <style name="Base.AppTheme.WhiteDefault" parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/med_grey</item>
+
+        <!-- accents -->
+        <item name="colorSecondary">@color/light_grey</item>
+
+        <!-- bars -->
+        <item name="colorSurface">@color/med_grey</item>
+
+        <!-- background -->
+        <item name="colorOnBackground">@color/white</item>
+
+        <!-- Buttons -->
+        <item name="colorPrimaryVariant">@color/dark_grey</item>
+
+        <!-- Text -->
+        <item name="colorTertiary">@color/black</item>
     </style>
 
-    <style name="Theme.Cookie_jar" parent="Base.Theme.Cookie_jar" />
+    <style name="DarkDefault" parent="Base.AppTheme.DarkDefault"/>
+    <style name="Base.AppTheme.DarkDefault" parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/dark_grey</item>
+
+        <!-- accents -->
+        <item name="colorSecondary">@color/med_grey</item>
+
+        <!-- bars -->
+        <item name="colorSurface">@color/dark_grey</item>
+
+        <!-- background -->
+        <item name="colorOnBackground">@color/black</item>
+
+        <!-- Buttons -->
+        <item name="colorPrimaryVariant">@color/light_grey</item>
+
+        <!-- Text -->
+        <item name="colorTertiary">@color/white</item>
+    </style>
 </resources>

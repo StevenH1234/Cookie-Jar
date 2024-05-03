@@ -27,49 +27,99 @@
             android:layout_height="wrap_content"
             android:textSize="40dp"
             android:gravity="center"
-            android:textColor="@color/black"
+            android:textColor="?attr/colorTertiary"
             android:text="@string/settings_tag" />
+
+        <View
+            android:layout_width="260dp"
+            android:layout_height="1dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:background="@android:color/darker_gray"/>
 
         <TextView
             android:id="@+id/settings_theme"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="@color/black"
-            android:textSize="35dp"
-            android:gravity="center"
+            android:paddingLeft="10dp"
+            android:textColor="?attr/colorTertiary"
+            android:textSize="30dp"
             android:text="@string/settings_theme" />
 
-        <RadioGroup
-            android:id="@+id/theme_group"
+        <View
+            android:layout_width="260dp"
+            android:layout_height="1dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:background="@android:color/darker_gray"/>
+
+        <LinearLayout
+            android:id="@+id/help_linear_Layout"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" >
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:onClick="navToHelp">
 
-            <RadioButton
-                android:id="@+id/theme1"
-                android:layout_width="match_parent"
+            <TextView
+                android:id="@+id/settings_help"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@color/black"
-                android:layout_marginLeft="90dp"
-                android:layout_marginRight="90dp"
-                android:text="@string/notebook" />
+                android:textColor="?attr/colorTertiary"
+                android:paddingLeft="10dp"
+                android:text="Help"
+                android:textSize="30dp"
+                android:layout_weight="1"/>
 
-            <RadioButton
-                android:id="@+id/theme2"
-                android:layout_width="match_parent"
+            <ImageButton
+                android:id="@+id/settings_help_button"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@color/black"
-                android:layout_marginLeft="90dp"
-                android:layout_marginRight="90dp"
-                android:text="@string/marble" />
+                android:src="@drawable/right_arrow_icon"
+                android:layout_weight="0"/>
+        </LinearLayout>
 
-            <RadioButton
-                android:id="@+id/theme3"
-                android:layout_width="match_parent"
+        <View
+            android:layout_width="260dp"
+            android:layout_height="1dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:background="@android:color/darker_gray"/>
+
+        <LinearLayout
+            android:id="@+id/about_linear_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:onClick="navToAbout">
+
+            <TextView
+                android:id="@+id/settings_about"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@color/black"
-                android:layout_marginLeft="90dp"
-                android:layout_marginRight="90dp"
-                android:text="@string/classic" />
-        </RadioGroup>
+                android:textColor="?attr/colorTertiary"
+                android:paddingLeft="10dp"
+                android:text="About"
+                android:textSize="30dp"
+                android:layout_weight="1"/>
+
+            <ImageButton
+                android:id="@+id/settings_about_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/right_arrow_icon"
+                android:layout_weight="0"/>
+        </LinearLayout>
+
+        <View
+            android:layout_width="260dp"
+            android:layout_height="1dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:background="@android:color/darker_gray"/>
+
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -45,6 +45,7 @@ dependencies {
     implementation("androidx.navigation:navigation-dynamic-features-fragment:$nav_version")
     implementation("androidx.navigation:navigation-compose:$nav_version")
     androidTestImplementation("androidx.navigation:navigation-testing:$nav_version")
+    implementation("com.github.bumptech.glide:glide:4.12.0")
 
     //room database dependencies
     val room_version = "2.4.0"

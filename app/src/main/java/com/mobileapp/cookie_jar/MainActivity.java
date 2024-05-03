@@ -18,6 +18,7 @@ Coding Resources Utilized:
 - How to Update RecyclerView Adapter Data in Android? - https://www.geeksforgeeks.org/how-to-update-recyclerview-adapter-data-in-android/
 - SearchView with RecyclerView - Android Studio Tutorial (2022) - codingSTUFF - https://www.youtube.com/watch?v=tQ7V7iBg5zE&t=303s
 - Android Room Database Tutorial: Fetch & Display Data from ROOM in RecyclerView #4.5 - Smartherd - https://www.youtube.com/watch?v=VrP_GrgWzyo
+- Permissions and Threading help - Stack Overflow, Medium.com, and GeeksForGeeks
 
 Date: 03/26/24
 Name: Steven Huynh
@@ -35,8 +36,10 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Toolbar;
 
 import com.google.android.material.appbar.MaterialToolbar;
@@ -71,6 +74,16 @@ public class MainActivity extends AppCompatActivity {
         // link bottom navigation bar
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_nav);
         NavigationUI.setupWithNavController(bottomNavigationView, navController);
+
+        // navigate to the cook with me fragment
+        ImageButton imageButton = findViewById(R.id.cook_with_me_button);
+
+        imageButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                navController.navigate(R.id.recipeCookWithMeFragment);
+            }
+        });
 
     }
 
